@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="theming.toolkit.portlets"
+    interface="theming.toolkit.portlets.interfaces.IThemingToolkitPortletsLayer"
+  />
+</layers>
