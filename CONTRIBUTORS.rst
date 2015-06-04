@@ -1,1 +1,3 @@
-- Jens Krause, development@propertyshelf.com
+
+- Propertyshelf, Inc, development@propertyshelf.com
+- Jens Krause, jens@propertyshelf.com

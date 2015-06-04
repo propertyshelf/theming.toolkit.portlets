@@ -1,5 +1,5 @@
-====================
+========================
 theming.toolkit.portlets
-====================
+========================
 
-*Please fill me*
+*This Plone Addon is intended to add a set of useful portlets for advanced MLS listing embeddings.*
