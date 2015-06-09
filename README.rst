@@ -7,13 +7,12 @@ theming.toolkit.portlets
 
 :Implements:
     - **ListingDetail Embedding Portlet** *(show any embedding code ONLY on ListingDetails)*
+    - **PhotoWall Portlet for ListingDetails** *(shows a second ListingImage Gallery as googles image search)*
     - *AjaxFilter Portlet for MLS-Searches*
-    - *PhotoWall Portlet for ListingDetails* *(shows a second ListingImage Gallery as googles image search)*
     - *Related Listings Portlet* *(show other Listings on ListingDetails)*
 
 :ToDo:
     - AjaxFilter Portlet for MLS-searches
-    - PhotoWall Portlet for ListingDetails
     - Related Listings Portlet
 
 :Dependencies:
