@@ -28,16 +28,25 @@
         interface=".embedding.IEmbeddingPortlet"
         renderer=".embedding.Renderer"
         view_permission="zope2.View"
-        edit_permission="cmf.ManagePortal"
-    />
+        edit_permission="cmf.ManagePortal" />
+
+    <!-- PhotoWall Portlet -->
+    <plone:portlet
+        name="portlets.PhotoWallPortlet"
+        addview=".photowall.AddForm"
+        assignment=".photowall.Assignment"
+        editview=".photowall.EditForm"
+        interface=".photowall.IPhotoWallPortlet"
+        renderer=".photowall.Renderer"
+        view_permission="zope2.View"
+        edit_permission="cmf.ManagePortal" />
 
     <genericsetup:registerProfile
         name="default"
         title="theming.toolkit.portlets"
         directory="profiles/default"
         description="Installs the theming.toolkit.portlets add-on."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+        provides="Products.GenericSetup.interfaces.EXTENSION" />
 
     <genericsetup:importStep
         name="theming.toolkit.portlets-postInstall"
