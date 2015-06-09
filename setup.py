@@ -30,7 +30,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
     ],
-    keywords='Python Plone',
+    keywords='Python Plone MLS',
     author='Propertyshelf, Inc.',
     author_email='development@propertyshelf.com',
     url='http://pypi.python.org/pypi/theming.toolkit.portlets',

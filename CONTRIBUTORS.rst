@@ -1,3 +1,4 @@
-
-- Propertyshelf, Inc, development@propertyshelf.com
-- Jens Krause, jens@propertyshelf.com
+:Author:
+    - Propertyshelf, Inc, development@propertyshelf.com
+:Contributers:
+    - Jens Krause, jens@propertyshelf.com
