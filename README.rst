@@ -9,7 +9,7 @@ theming.toolkit.portlets
 
 :Implements:
     - **ListingDetails embedding portlet** *(show any embedding code ONLY on ListingDetails)*
-    - **PhotoWall portlet for ListingDetails** *(visit `Photo Wall JQuery plugin <http://creotiv.github.io/jquery-photowall/>`)*
+    - **PhotoWall portlet for ListingDetails** (visit `Photo Wall JQuery plugin <http://creotiv.github.io/jquery-photowall/>`_)
     - *AjaxFilter portlet for MLS-searches*
     - *RelatedListings portlet* *(show links to similar listings on ListingDetails)*
 
