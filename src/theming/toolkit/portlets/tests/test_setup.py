@@ -10,6 +10,7 @@ class TestSetup(unittest.TestCase):
     """Test that theming.toolkit.portlets is properly installed."""
 
     layer = THEMING_TOOLKIT_PORTLETS_INTEGRATION_TESTING
+    name = 'theming.toolkit.portlets'
 
     def setUp(self):
         """Custom shared utility setup for tests."""
@@ -17,16 +18,16 @@ class TestSetup(unittest.TestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_product_installed(self):
-        """Test if theming.toolkit.portlets is installed with portal_quickinstaller."""
-        self.assertTrue(self.installer.isProductInstalled('theming.toolkit.portlets'))
+        """Test if product is installed with portal_quickinstaller."""
+        self.assertTrue(self.installer.isProductInstalled(self.name))
 
     def test_uninstall(self):
         """Test if theming.toolkit.portlets is cleanly uninstalled."""
         self.installer.uninstallProducts(['theming.toolkit.portlets'])
-        self.assertFalse(self.installer.isProductInstalled('theming.toolkit.portlets'))
+        self.assertFalse(self.installer.isProductInstalled(self.name))
 
     def test_browserlayer(self):
         """Test that IThemingToolkitPortletsLayer is registered."""
-        from theming.toolkit.portlets.interfaces import IThemingToolkitPortletsLayer
+        from theming.toolkit.portlets.interfaces import IThemingToolkitPortletsLayer  # noqa
         from plone.browserlayer import utils
         self.assertIn(IThemingToolkitPortletsLayer, utils.registered_layers())
