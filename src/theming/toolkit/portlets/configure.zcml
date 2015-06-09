@@ -16,6 +16,14 @@
         name="theming.toolkit.portlets"
         directory="static"/>
 
+    <!-- Ajax Search -->
+    <browser:page
+        for="*"
+        name="ajaxsearch"
+        permission="zope2.Public"
+        class=".ajaxsearch.AjaxSearch"
+    />
+
     <!-- register Portlets -->
     <include package="plone.app.portlets" />
 
