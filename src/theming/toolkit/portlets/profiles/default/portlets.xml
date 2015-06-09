@@ -3,6 +3,9 @@
   <portlet
       addview="portlets.EmbeddingPortlet"
       title="ListingDetail Embedding Portlet"
-      description="Show Embedding Portlet on ListingDetails"
-  />
+      description="Show Embedding Portlet on ListingDetails" />
+  <portlet
+      addview="portlets.PhotoWallPortlet"
+      title="PhotoWall Portlet"
+      description="Show PhotoWall Portlet" />
 </portlets>
