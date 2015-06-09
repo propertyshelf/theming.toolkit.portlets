@@ -12,6 +12,10 @@
 
     <i18n:registerTranslations directory="locales" />
 
+    <browser:resourceDirectory
+        name="theming.toolkit.portlets"
+        directory="static"/>
+
     <!-- register Portlets -->
     <include package="plone.app.portlets" />
 
