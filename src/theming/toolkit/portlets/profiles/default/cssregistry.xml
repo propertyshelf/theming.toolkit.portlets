@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- Setup configuration for the portal_css tool. -->
+
+<object name="portal_css">
+
+    <stylesheet
+        id="++resource++theming.toolkit.portlets/photowall.css"
+        cacheable="True"
+        compression="safe"
+        cookable="False"
+        applyPrefix="True"
+        enabled="1"
+        rel="stylesheet"
+        />
+
+</object>
