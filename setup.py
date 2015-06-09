@@ -44,6 +44,9 @@ setup(
         'plone.api',
         'setuptools',
         'z3c.jbot',
+        'ps.plone.mls',
+        'plone.mls.listing',
+        'mls.apiclient',
     ],
     extras_require={
         'test': [
