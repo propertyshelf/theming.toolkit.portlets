@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    i18n:domain="customer.lascatalinascr_com"
+    tal:omit-tag="">
+    
+    <dl class="portlet photowallportlet"
+        tal:define="title view/title | nothing">
+        <dt class="portletHeader" tal:condition="title" style="display:none;">
+            <span class="portletTopLeft"></span>
+            <span tal:omit-tag="" tal:content="title" />
+            <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem" tal:define="images view/images">
+            <div id="photowall"><div class="body" /></div>
+
+            <div id="photowall-images">
+                <tal:images tal:repeat="image images">
+                <span class="photowall-image-data"
+                    tal:attributes="data-img image/url;
+                                    data-thumb image/thumb;"/>
+                </tal:images>
+            </div>
+            <script type="text/javascript">
+                window.photo_array = []
+
+                $('#photowall-images .photowall-image-data').each(function(index){
+                    var thumbSrc = $(this).attr('data-thumb');
+                    _thumb_width =0;
+                    _thumb_height=0;
+
+                    $("<img/>").attr("src", thumbSrc).load(function() {
+
+                        _thumb_width = this.width; 
+                        _thumb_height = this.height;
+                        imgSrc = thumbSrc.replace('_thumb', '_large');
+                        miniSrc = thumbSrc.replace('_thumb', '_mini');
+                        max =768; //max. Dimension for large image width or height
+                        maxMini =200;
+                        
+                        myratio = _thumb_width / _thumb_height;
+
+                        if(myratio<1){
+                            _img_width=max;
+                            _img_height= Math.round(max*myratio);  
+                        }
+                        else{
+                            _img_width=Math.round(max/myratio);
+                            _img_height= max;
+                        }
+
+                        myPhoto ={}
+                        myPhoto.id= 'id_'+Date.now()+'_'+index;
+                        myPhoto.img=imgSrc;
+                        myPhoto.height=_img_height;
+                        myPhoto.width=_img_width;
+                        myPhoto.th ={};
+                        myPhoto.th.src =miniSrc;
+                        myPhoto.th.zoom_factor=1.1;
+                        myPhoto.th.zoom_src =miniSrc;
+
+                        myPhoto.th.width=_thumb_width;
+                        myPhoto.th.height=_thumb_height;
+                        window.photo_array.push(myPhoto);
+                    });
+                });
+               
+            $(window).load(function(event){
+                PhotoWall.init({
+                    el:                 '#photowall'     // Gallery element
+                    ,zoom:              true             // Use zoom
+                    ,zoomAction:        'mouseenter'     // Zoom on action
+                    ,zoomTimeout:       500              // Timeout before zoom
+                    ,zoomDuration:      100              // Zoom duration time
+                    ,zoomImageBorder:   5                // Zoomed image border size 
+                    ,showBox:           true             // Enavle fullscreen mode
+                    ,showBoxSocial:     true             // Show social buttons
+                    ,padding:           2                // padding between images in gallery
+                    ,lineMaxHeight:     200              // Max set height of pictures line
+                    ,lineMaxHeightDynamic: false         // Dynamic lineMaxHeight
+                    ,baseScreenHeight:  600                      
+                });           
+                PhotoWall.load(window.photo_array);
+                $('.photowallportlet .portletHeader').show();
+            })
+  
+            </script>
+        </dd>
+        <div class="visualClear"></div>
+    </dl>
+</html>
