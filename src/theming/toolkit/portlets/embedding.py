@@ -27,6 +27,15 @@ class IEmbeddingPortlet(IPortletDataProvider):
         title=_(u'Embedding Code'),
     )
 
+    restrict = schema.Bool(
+        description=_(
+            u'Choose if the portlet only shows on detailed information pages',
+        ),
+        required=False,
+        title=_(u'Restrict to ListingDetails?'),
+        default=True
+    )
+
 
 @implementer(IEmbeddingPortlet)
 class Assignment(base.Assignment):
@@ -34,11 +43,14 @@ class Assignment(base.Assignment):
 
     heading = FieldProperty(IEmbeddingPortlet['heading'])
     plugin_code = FieldProperty(IEmbeddingPortlet['plugin_code'])
+    restrict = FieldProperty(IEmbeddingPortlet['restrict'])
+
     title = _(u'Embedding Portlet')
 
-    def __init__(self, heading=None, plugin_code=None):
+    def __init__(self, heading=None, plugin_code=None, restrict=True):
         self.heading = heading
         self.plugin_code = plugin_code
+        self.restrict = restrict
 
 
 class Renderer(base.Renderer):
@@ -49,11 +61,13 @@ class Renderer(base.Renderer):
     def available(self):
         """Check the portlet availability."""
         """Show on ListingDetails"""
-        show = False
+        # available for all?
+        if not self.data.restrict:
+            return True
         # available for ListingDetails
         if getattr(self.request, 'listing_id', None) is not None:
-            show = True
-        return show
+            return True
+        return False
 
     @property
     def title(self):
