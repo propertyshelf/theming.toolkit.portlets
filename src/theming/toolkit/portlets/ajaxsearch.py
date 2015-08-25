@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """View with Results of AjaxSearch"""
+
 from plone.memoize.view import memoize
 from Products.Five.browser import BrowserView, pagetemplatefile
+# from Products.Five.browser import BrowserView
 from zope.component import queryMultiAdapter
 from zope.traversing.browser.absoluteurl import absoluteURL
 
@@ -66,7 +68,7 @@ def get_minmax(beds):
 
 class AjaxSearch(BrowserView):
     """Deliver search results for ajax calls"""
-    index = pagetemplatefile.ViewPageTemplateFile('templates/ajax_template.pt')
+    index = pagetemplatefile.ViewPageTemplateFile('templates/ajax_template.pt')  # noqa
 
     _listings = None
     _batching = None
@@ -98,7 +100,7 @@ class AjaxSearch(BrowserView):
         """get a limit from the request or set 12"""
         if self._limit is not None:
             return self._limit
-        return 12
+        return 16
 
     @property
     def agency_exclusive(self):
@@ -283,6 +285,7 @@ class AjaxSearch(BrowserView):
 
     def _get_listings(self, params):
         """Query the recent listings from the MLS."""
+
         search_params = {
             'limit': self.limit,
             'offset': self.request.get('b_start', 0),
@@ -292,6 +295,11 @@ class AjaxSearch(BrowserView):
         search_params.update(params)
 
         results, batching = search(search_params, context=self.context)
+
+        if len(results) < 1:
+            # Retry search
+            results, batching = search(search_params, context=self.context)
+
         self._listings = results
         self._batching = batching
 
