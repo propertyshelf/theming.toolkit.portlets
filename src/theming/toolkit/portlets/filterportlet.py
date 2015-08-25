@@ -25,7 +25,11 @@ except ImportError:
 
 try:
     # try to extend plone.mls.listing QuickSearch Renderer
-    from plone.mls.listing.browser import listing_collection, listing_search, recent_listings
+    from plone.mls.listing.browser import (
+        listing_collection,
+        listing_search,
+        recent_listings,
+    )
     PLONE_MLS_LISTING = True
 
 except ImportError:
@@ -35,9 +39,7 @@ except ImportError:
 # local imports
 from plone.mls.listing.i18n import _
 
-MSG_PORTLET_DESCRIPTION = _(u'This portlet shows a Ajax Filter for MLS Listings.')
-
-
+MSG_PORTLET_DESCRIPTION = _(u'This portlet shows a AjaxFilter for MLS Listings.')  # noqa
 
 #: Definition of available fields in the given ``rows``.
 FIELD_ORDER = {
@@ -64,8 +66,8 @@ FIELD_ORDER = {
 }
 
 
-class IFilterSearchLC(form.Schema):
-    """custom Form scheme for LasCatalinas QuickSearchPortlet"""
+class IFilterSearchAjax(form.Schema):
+    """custom Form scheme for AjaxFilter"""
 
     form.widget(listing_type=checkbox.CheckBoxFieldWidget)
     listing_type = schema.Tuple(
@@ -131,7 +133,7 @@ class IFilterSearchLC(form.Schema):
 class FilterSearchForm(form.Form):
     """Filter Search Form."""
 
-    fields = field.Fields(IFilterSearchLC)
+    fields = field.Fields(IFilterSearchAjax)
     template = ViewPageTemplateFile('templates/searchform.pt')
     ignoreContext = True
     method = 'get'
@@ -156,7 +158,7 @@ class FilterSearchForm(form.Form):
     def updateWidgets(self):
         super(FilterSearchForm, self).updateWidgets()
 
-    @button.buttonAndHandler(PMF(u'label_search', default=u'Search'), name='search')
+    @button.buttonAndHandler(PMF(u'label_search', default=u'Search'), name='search')  # noqa
     def handle_search(self, action):
         """Search button."""
         data, errors = self.extractData()
@@ -243,7 +245,7 @@ class Assignment(base.Assignment):
     except Exception, e:
         limit = None
     try:
-        agency_listings = bool(FieldProperty(IFilterSearchPortlet['agency_listings']))
+        agency_listings = bool(FieldProperty(IFilterSearchPortlet['agency_listings']))  # noqa
     except Exception, e:
         agency_listings = True
 
@@ -305,7 +307,7 @@ class Renderer(base.Renderer):
 
     def update(self):
         z2.switch_on(self, request_layer=IFormLayer)
-        self.form = FilterSearchForm(aq_inner(self.context), self.request, self.data)
+        self.form = FilterSearchForm(aq_inner(self.context), self.request, self.data)  # noqa
         if HAS_WRAPPED_FORM:
             alsoProvides(self.form, IWrappedForm)
         self.form.update()
