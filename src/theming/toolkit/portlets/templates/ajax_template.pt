@@ -46,7 +46,6 @@
                     workflow listing/workflow_status/value;
                     workflow_status python: listing_status if workflow == 'Active' else workflow;
                     price_label python: 'Price from' if listing_category == 'rent' else 'Price';
-
                     ">
    
         <div class="js-on show listing-summary" style="display:none;">
@@ -139,7 +138,7 @@
                   <span class="value" tal:content="listing_price"/>
           </div>
         </section>
-
+        
         <section class="js-off">
           <h2 tal:content="property_title"/>
           <h3 tal:content="listing_title" tal:condition="listing_title" class="listing_descr" />
@@ -153,12 +152,6 @@
               <dt class="row"><span tal:replace="item/label">[Label]</span>:</dt>
               <dd><span tal:replace="listing_price">[Value]</span></dd>
             </tal:item>
-
-            <tal:item tal:define="item listing/workflow_status | nothing" tal:condition="item">
-              <dt><span tal:replace="item/label">[Label]</span>:</dt>
-              <dd><span tal:replace="item/value">[Value]</span></dd>
-            </tal:item>
-
             <tal:item tal:define="item listing/listing_type | nothing" tal:condition="item">
               <dt><span tal:replace="item/label">[Label]</span>:</dt>
               <dd><span tal:replace="item/value">[Value]</span></dd>
@@ -196,6 +189,13 @@
 
       <div metal:use-macro="context/batch_macros/macros/navigation" />
     </tal:listings>
+    <tal:map >
+      <div class="map-results visualIEFloatFix">
+        <tal:geo tal:repeat="marker batch">
+          <span tal:omit-tag="" tal:content="geo" tal:condition="geo" tal:define="geo marker/geolocation"/>
+        </tal:geo>
+      </div> 
+    </tal:map>
      
   </section>
 </html>
